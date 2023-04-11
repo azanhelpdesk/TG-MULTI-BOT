@@ -38,7 +38,10 @@ async def sticker_image(_, message: Message):
 
 
 @Client.on_message(filters.command("kang"))
-async def kang(client, message: Message):
+async def kang(client, message):
+    user_id = message.from_user.id
+    message_id = message.message_id
+    name_format = f"StarkBots_{user_id}_{message_id}
     BOT_USERNAME = client.username
     if not message.reply_to_message:
         return await message.reply_text("Reply to a sticker/image to kang it.")
@@ -134,7 +137,7 @@ async def kang(client, message: Message):
                         + "_"
                         + str(message.from_user.id)
                         + "_by_"
-                        + BOT_USERNAME
+                        + name_format
                 )
                 limit += 1
                 continue
